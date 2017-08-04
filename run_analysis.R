@@ -1,3 +1,4 @@
+library(plyr)
 library(dplyr)
 # Read the Activity Labels from the CSV-file. No header line, separator is a blank space
 # After that we set descriptive variable names
@@ -20,7 +21,7 @@ activityTests <- read.csv("UCI HAR Dataset/test/y_test.txt", sep=" ", header=FAL
 colnames(activityTests) <- c("activityid")
 
 # merge the activityLabels with the activityTests, such that the activityTests contain also the description of the activity as a variable
-activityTests <- merge(activityTests, activityLabels, by="activityid")
+activityTests <- join(activityTests, activityLabels, by="activityid")
 
 # Read the Features from the CSV-file. No header line, separator is any combination of blank space 
 testValues <- read.table("UCI HAR Dataset/test/X_test.txt", sep="", header=FALSE)
@@ -46,7 +47,7 @@ colnames(subjectTrainings) <- c("subjectid")
 activityTrainings <- read.csv("UCI HAR Dataset/train/y_train.txt", sep=" ", header=FALSE)
 colnames(activityTrainings) <- c("activityid")
 # merge the activityLabels with the activityTrainings, such that the activityTrainings contain also the description of the activity as a variable
-activityTrainings <- merge(activityTrainings, activityLabels, by="activityid")
+activityTrainings <- join(activityTrainings, activityLabels, by="activityid")
 
 # Read the Features from the CSV-file. No header line, separator is any combination of blank space 
 trainingValues <- read.table("UCI HAR Dataset/train/X_train.txt", sep="", header=FALSE)
